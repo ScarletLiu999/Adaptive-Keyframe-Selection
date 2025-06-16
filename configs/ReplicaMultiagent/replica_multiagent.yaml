@@ -1,6 +1,6 @@
 project_name: 'MAGiC-SLAM'
 dataset_name: 'replica'
-multi_gpu: True  # Put every agent on a separate GPU
+multi_gpu: False  # Put every agent on a separate GPU
 use_wandb: False
 wandb_offline: False
 experiment_name: "baseline"
@@ -43,7 +43,7 @@ loop_detection:
   max_loops_per_frame: 1
   fitness_threshold: 0.5
   inlier_rmse_threshold: 0.1
-cam:
+camera:
   H: 680
   W: 1200
   fx: 600.0
