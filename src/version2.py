@@ -212,13 +212,9 @@ def main():
             })
 
         # 保存关键帧
-        output_dir = f"keyframes/agent_{agent_id}"
-        os.makedirs(output_dir, exist_ok=True)
-
         for j, kf in enumerate(selector.keyframe_set):
-            filename = os.path.join(output_dir, f"keyframe_{j}.ply")
+            filename = f"agent_{agent_id}_keyframe_{j}.ply"
             o3d.io.write_point_cloud(filename, kf)
-
 
         print(f"[Agent {agent_id}] Saved {len(selector.keyframe_set)} keyframes.")
         total_keyframes += len(selector.keyframe_set)
