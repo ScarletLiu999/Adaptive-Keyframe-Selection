@@ -1,4 +1,4 @@
-inherit_from: configs/ReplicaMultiagent/replica_multiagent.yaml
+inherit_from: replica_multiagent.yaml
 config_path: configs/ReplicaMultiagent/office_0.yaml
 data:
   frame_limit: 1500

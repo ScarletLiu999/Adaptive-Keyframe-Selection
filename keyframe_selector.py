@@ -136,18 +136,23 @@ def rgbd_to_point_cloud(rgb_path, depth_path, intrinsics, depth_scale=6553.5):
     return pcd
 
 def load_config(config_path):
+    config_path = os.path.abspath(config_path)
     with open(config_path, 'r') as f:
         config = yaml.safe_load(f)
+
     if 'inherit_from' in config:
-        base_path = os.path.dirname(config_path)
-        parent_config_path = os.path.join(base_path, config['inherit_from'])
-        parent_config = load_config(parent_config_path)
+        inherit_path = config['inherit_from']
+        # If the path is not absolute, resolve it relative to the current config
+        if not os.path.isabs(inherit_path):
+            inherit_path = os.path.join(os.path.dirname(config_path), inherit_path)
+        parent_config = load_config(os.path.abspath(inherit_path))
         for key, value in config.items():
             if isinstance(value, dict) and key in parent_config:
                 parent_config[key].update(value)
             else:
                 parent_config[key] = value
         config = parent_config
+
     return config
 
 def main():
