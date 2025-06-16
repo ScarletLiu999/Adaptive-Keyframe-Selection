@@ -34,9 +34,15 @@ loop_detection:
   # weights_path: "<path_to>/TokyoTM_struct.mat"
   # embed_size: 4096
   # feature_dist_threshold: .8
-  feature_extractor_name: "dino"  # netvlad
-  weights_path: "facebook/dinov2-small"
-  embed_size: 384
+
+  #feature_extractor_name: "dino"  # netvlad
+  #weights_path: "facebook/dinov2-small"
+  #embed_size: 384
+
+
+  feature_extractor_name: "dino"
+  weights_path: "facebook/dinov2-base"
+  embed_size: 768
   feature_dist_threshold: .35  
   device: cpu
   time_threshold: 0
