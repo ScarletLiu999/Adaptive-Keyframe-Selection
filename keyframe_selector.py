@@ -151,6 +151,7 @@ def load_config(config_path):
     return config
 
 def main():
+
     config_path = os.path.expanduser("/home/jliu/MAGiC-SLAM/configs/ReplicaMultiagent/office_0.yaml")
     if not os.path.exists(config_path):
         raise FileNotFoundError(f"Config file {config_path} not found!")
