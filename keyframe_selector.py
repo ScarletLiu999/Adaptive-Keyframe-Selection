@@ -67,8 +67,14 @@ class KeyframeSelector:
     
     
     def compute_dynamic_threshold(self, normalized_delta):
-        alpha_t = 0.1 * (1 + 0.7 * normalized_delta)
-        return np.clip(alpha_t, 0.05, 0.2)
+        alpha_t = 0.2 * (1 + 0.7 * normalized_delta)
+        return np.clip(alpha_t, 0.20, 0.34)
+        
+        #alpha_t = 0.15 * (1 + 0.7 * normalized_delta)
+        #return np.clip(alpha_t, 0.10, 0.3)
+
+        #alpha_t = 0.1 * (1 + 0.7 * normalized_delta)
+        #return np.clip(alpha_t, 0.05, 0.2)
 
         #alpha_t = 0.01 * (1 + 0.7 * normalized_delta)  # 进一步降低基线
         #return np.clip(alpha_t, 0.005, 0.025)
@@ -93,8 +99,8 @@ class KeyframeSelector:
         alpha_t = self.compute_dynamic_threshold(normalized_delta)
         marginal_gain = self.compute_marginal_gain(phi_et)
 
-        #if marginal_gain >= alpha_t:
-        if marginal_gain >= 0.08:
+        if marginal_gain >= alpha_t:
+        #if marginal_gain >= 0.08:
             self.keyframe_set.append(point_cloud)
             self.phi_k_set = np.vstack([self.phi_k_set, phi_et])
             return True, marginal_gain, delta_t, alpha_t
