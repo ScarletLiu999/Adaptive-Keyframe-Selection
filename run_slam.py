@@ -17,6 +17,8 @@ def get_args():
     parser.add_argument('--wandb_entity', type=str)
     parser.add_argument('--experiment_name', type=str)
     parser.add_argument('--group_name', type=str)
+    parser.add_argument('--agent_id', type=int, default=0, help='Agent ID to simulate (used to load keyframes)')
+
     return parser.parse_args()
 
 
@@ -39,7 +41,11 @@ def update_config_with_args(config, args):
         config["experiment_name"] = args.experiment_name
     if args.group_name:
         config["group_name"] = args.group_name
+        
+    config["data"]["agent_ids"] = [args.agent_id]  # overwrite to just use one agent
+    config["agent_id"] = args.agent_id  # pass agent id as top-level key (optional)
     return config
+
 
 
 if __name__ == "__main__":
@@ -50,3 +56,5 @@ if __name__ == "__main__":
     setup_seed(config["seed"])
     coga_slam = MAGiCSLAM(config)
     coga_slam.run()
+
+

@@ -6,6 +6,8 @@ wandb_offline: False
 experiment_name: "baseline"
 group_name: "replica_multiagent"
 seed: 0
+
+
 mapping:
   new_submap_every: 50
   map_every: 5
@@ -43,7 +45,7 @@ loop_detection:
   max_loops_per_frame: 1
   fitness_threshold: 0.5
   inlier_rmse_threshold: 0.1
-camera:
+cam:
   H: 680
   W: 1200
   fx: 600.0
@@ -51,5 +53,9 @@ camera:
   cx: 599.5
   cy: 339.5
   depth_scale: 6553.5
+
+
 data:
-  agent_ids: [0, 1]
+  agent_ids: [0]
+  keyframe_file_root: configs/keyframes
+

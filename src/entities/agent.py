@@ -24,6 +24,7 @@ from src.utils.utils import (clone_obj, get_render_settings, np2torch,
 from src.utils.vis_utils import COLORS_ANSI
 
 
+
 class Agent(object):
 
     def __init__(self, agent_id: int, run_info: dict, config: dict) -> None:
@@ -38,7 +39,8 @@ class Agent(object):
 
         self.scene_name = config["data"]["scene_name"]
         self.dataset_name = config["dataset_name"]
-        agent_input_path = sorted(Path(config["data"]["input_path"]).glob("*"))[self.agent_id]
+        #agent_input_path = sorted(Path(config["data"]["input_path"]).glob("*"))[self.agent_id]
+        agent_input_path = Path(config["data"]["input_path"])
         self.config["data"]["input_path"] = str(agent_input_path)
         self.dataset = get_dataset(config["dataset_name"])({**self.config["data"], **self.config["cam"]})\
         
@@ -69,15 +71,15 @@ class Agent(object):
 
     def _load_custom_keyframes(self):
         scene = self.config["data"]["scene_name"]
-        keyframe_dir = Path("configs/keyframes") / scene
-        keyframe_path = keyframe_dir / f"agent{self.agent_id}.txt"
+        keyframe_base = self.config["data"].get("keyframe_file_root", "configs/keyframes")
+        keyframe_path = Path(keyframe_base) / scene / f"agent{self.agent_id}.txt"
         if not keyframe_path.exists():
-            print(f"[INFO] Agent {self.agent_id}: no custom keyframe file found at {keyframe_path}, using default strategy.")
+            print(f"[INFO] No custom keyframe file found at {keyframe_path}, using default.")
             return None
-        with open(keyframe_path, 'r') as f:
-            kfs = set(int(line.strip()) for line in f if line.strip().isdigit())
-        print(f"[INFO] Agent {self.agent_id}: loaded {len(kfs)} custom keyframes.")
-        return kfs
+        with open(keyframe_path, "r") as f:
+            return set(int(line.strip()) for line in f if line.strip().isdigit())
+
+
 
 
 
