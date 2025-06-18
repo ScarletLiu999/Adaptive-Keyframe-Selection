@@ -40,7 +40,9 @@ class Agent(object):
         self.dataset_name = config["dataset_name"]
         agent_input_path = sorted(Path(config["data"]["input_path"]).glob("*"))[self.agent_id]
         self.config["data"]["input_path"] = str(agent_input_path)
-        self.dataset = get_dataset(config["dataset_name"])({**self.config["data"], **self.config["cam"]})
+        self.dataset = get_dataset(config["dataset_name"])({**self.config["data"], **self.config["cam"]})\
+        
+        self.custom_keyframes = self._load_custom_keyframes()
 
         self.estimated_c2ws = torch.empty(len(self.dataset), 4, 4)
         self.gt_c2ws = np2torch(np.array(self.dataset.poses))
@@ -63,6 +65,21 @@ class Agent(object):
     def set_pipe(self, pipe) -> None:
         """ Sets the pipe for communication with the server (main process). """
         self.pipe = pipe
+
+
+    def _load_custom_keyframes(self):
+        scene = self.config["data"]["scene_name"]
+        keyframe_dir = Path("configs/keyframes") / scene
+        keyframe_path = keyframe_dir / f"agent{self.agent_id}.txt"
+        if not keyframe_path.exists():
+            print(f"[INFO] Agent {self.agent_id}: no custom keyframe file found at {keyframe_path}, using default strategy.")
+            return None
+        with open(keyframe_path, 'r') as f:
+            kfs = set(int(line.strip()) for line in f if line.strip().isdigit())
+        print(f"[INFO] Agent {self.agent_id}: loaded {len(kfs)} custom keyframes.")
+        return kfs
+
+
 
     def start_new_submap(self, frame_id: int, gaussian_model: GaussianModel) -> None:
         """ Initializes a new submap, saving the current submap's checkpoint and resetting the Gaussian model.
