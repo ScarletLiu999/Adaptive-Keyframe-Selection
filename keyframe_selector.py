@@ -67,11 +67,11 @@ class KeyframeSelector:
     
     
     def compute_dynamic_threshold(self, normalized_delta):
-        alpha_t = 0.2 * (1 + 0.7 * normalized_delta)
-        return np.clip(alpha_t, 0.20, 0.34)
+        #alpha_t = 0.2 * (1 + 0.7 * normalized_delta)
+        #return np.clip(alpha_t, 0.20, 0.34)
         
-        #alpha_t = 0.15 * (1 + 0.7 * normalized_delta)
-        #return np.clip(alpha_t, 0.10, 0.3)
+        alpha_t = 0.15 * (1 + 0.7 * normalized_delta)
+        return np.clip(alpha_t, 0.10, 0.3)
 
         #alpha_t = 0.1 * (1 + 0.7 * normalized_delta)
         #return np.clip(alpha_t, 0.05, 0.2)

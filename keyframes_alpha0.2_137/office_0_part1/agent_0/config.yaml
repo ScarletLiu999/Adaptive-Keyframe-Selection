@@ -1,0 +1,59 @@
+agent_id: 0
+cam:
+  H: 680
+  W: 1200
+  cx: 599.5
+  cy: 339.5
+  depth_scale: 6553.5
+  fx: 600.0
+  fy: 600.0
+config_path: configs/ReplicaMultiagent/office_0.yaml
+data:
+  agent_ids:
+  - 0
+  frame_limit: 1500
+  input_path: Data/Office-0/office_0_part1
+  keyframe_file_root: configs/keyframes
+  output_path: output/office_0_part1
+  scene_name: office_0
+dataset_name: replica
+experiment_name: baseline
+group_name: replica_multiagent
+loop_detection:
+  device: cpu
+  embed_size: 384
+  feature_dist_threshold: 0.35
+  feature_extractor_name: dino
+  fitness_threshold: 0.5
+  inlier_rmse_threshold: 0.1
+  max_loops_per_frame: 1
+  time_threshold: 0
+  weights_path: facebook/dinov2-small
+mapping:
+  alpha_thre: 0.6
+  iterations: 50
+  map_every: 5
+  new_submap_every: 50
+  new_submap_gradient_points_num: 5000
+  new_submap_iterations: 1000
+  new_submap_points_num: 60000
+  pruning_thre: 0.1
+  visualize: false
+multi_gpu: false
+project_name: MAGiC-SLAM
+seed: 0
+tracking:
+  alpha_thre: 0.98
+  cam_rot_lr: 0.0002
+  cam_trans_lr: 0.002
+  filter_outlier_depth: true
+  help_camera_initialization: false
+  init_err_ratio: 5
+  iterations: 60
+  mask_invalid_depth: false
+  odometer_method: point_to_plane
+  odometry_type: odometer
+  soft_alpha: true
+  w_color_loss: 0.95
+use_wandb: false
+wandb_offline: false
