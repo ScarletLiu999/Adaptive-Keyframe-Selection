@@ -1,0 +1,23 @@
+Detected 27 intra-loop(s) and 0 inter-loop(s)
+
+Iteration                chi^2        rel. change
+---------                -----        -----------
+        0               0.0000
+        1               0.0000          -0.535676
+        2               0.0000          -0.000000
+Merging submaps
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1/1 [00:00<00:00,  6.71it/s]
+Eval coarse merged map
+  0%|                                                                                                                                                                                                                                            | 0/1 [00:00<?, ?it/s]/home/jliu/anaconda3/envs/magic-slam-new/lib/python3.11/site-packages/torchmetrics/functional/image/lpips.py:332: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  self.load_state_dict(torch.load(model_path, map_location="cpu"), strict=False)
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1/1 [00:08<00:00,  8.08s/it]
+25.907, 0.845, 0.285, 0.194 
+
+Refining map
+100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 3000/3000 [01:30<00:00, 33.11it/s]
+Total merge time: 90.84263229370117
+Eval coarse merged map
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1/1 [00:07<00:00,  7.91s/it]
+39.099, 0.990, 0.068, 0.004 
+
+(magic-slam-new) jliu@M4210-benchbot:~/MAGiC-SLAM$ 
