@@ -1,0 +1,16 @@
+data:
+  dataset_path: /home/jliu/MAGiC_SLAM/Data/Office-0/office_0_part1
+  scene_name: office_0
+  frame_limit: 1500
+
+cam:
+  H: 680
+  W: 1200
+  fx: 600.0
+  fy: 600.0
+  cx: 599.5
+  cy: 339.5
+  depth_scale: 6553.5
+
+dataset_name: replica
+
