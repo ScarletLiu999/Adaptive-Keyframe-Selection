@@ -1,0 +1,7 @@
+inherit_from: configs/ReplicaMultiagent/replica_multiagent.yaml
+config_path: configs/ReplicaMultiagent/rosbag2.yaml
+data:
+  frame_limit: -1  # 或留空，表示不限制帧数
+  scene_name: rosbag2_path_0
+  input_path: /home/jliu/limo/rosbag2_path_0/data_merged/
+  output_path: /home/jliu/limo/rosbag2_path_0/output/
